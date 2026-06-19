@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 日常查询与对照笔记</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fcebdf 0%, #f9dcca 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.7;
+      color: #2c241f;
+    }
+
+    .content-card {
+      max-width: 820px;
+      width: 100%;
+      background: #fffcf8;
+      border-radius: 36px;
+      padding: 3rem 2.8rem;
+      box-shadow: 0 18px 40px -12px rgba(140, 80, 30, 0.18), 0 6px 14px rgba(0,0,0,0.03);
+      transition: box-shadow 0.25s ease;
+    }
+
+    @media (max-width: 540px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .content-card {
+        padding: 2rem 1.6rem;
+        border-radius: 28px;
+      }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      letter-spacing: 0.01em;
+      color: #3b2a20;
+      margin-bottom: 0.25rem;
+      border-left: 6px solid #dd9f7a;
+      padding-left: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      color: #8a7161;
+      margin-top: 0.1rem;
+      margin-bottom: 2.2rem;
+      padding-left: 1.8rem;
+      font-weight: 390;
+      border-bottom: 1px solid #edd7c9;
+      padding-bottom: 0.8rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: #4a3b32;
+      background: #f5ede7;
+      padding: 1.5rem 2rem;
+      border-radius: 60px 20px 60px 20px;
+      margin-bottom: 2.3rem;
+      font-weight: 390;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .body-text p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .body-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pull-quote {
+      background: #f8efe8;
+      border-left: 5px solid #dbaa87;
+      padding: 1.2rem 1.8rem;
+      margin: 2rem 0 2rem 0;
+      border-radius: 0 28px 28px 0;
+      font-style: normal;
+      font-size: 1rem;
+      color: #4d382b;
+      quotes: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .pull-quote::before {
+      content: "⏤ 对照笔记 ⏤";
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #ad8973;
+      margin-bottom: 0.5rem;
+      font-weight: 440;
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #876f5e;
+      font-style: normal;
+    }
+
+    .scene-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 1.2rem;
+      margin: 2rem 0 1.8rem 0;
+    }
+
+    .scene-item {
+      background: #faf4ef;
+      padding: 1rem 1.4rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      color: #3c2e26;
+      border: 1px solid #e8d5c7;
+      flex: 1 0 180px;
+      text-align: center;
+      transition: background 0.15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .scene-item:hover {
+      background: #eddacb;
+    }
+
+    .faq-note {
+      background: #f3e8e0;
+      padding: 1.6rem 2rem;
+      border-radius: 28px;
+      margin: 2.2rem 0 1.8rem 0;
+    }
+
+    .faq-note summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #3f2d21;
+      font-size: 1rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-note summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-note summary::before {
+      content: "↪";
+      font-size: 1.2rem;
+      color: #b48163;
+      transition: transform 0.2s;
+    }
+
+    .faq-note[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .faq-note .faq-answer {
+      margin-top: 1rem;
+      padding-left: 0.2rem;
+      color: #4d3a2e;
+      border-top: 1px dashed #d7bead;
+      padding-top: 1rem;
+    }
+
+    .visit-sentence {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e7d3c4;
+      font-size: 0.98rem;
+      color: #4d392b;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .visit-sentence a {
+      display: inline-block;
+      background: #e3cdbb;
+      color: #2d1e17;
+      text-decoration: none;
+      padding: 0.2rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 6px rgba(90, 50, 20, 0.06);
+      border: 1px solid #d6b9a3;
+    }
+
+    .visit-sentence a:hover {
+      background: #d7b8a1;
+      transform: scale(1.02);
+    }
+
+    .footer-note {
+      margin-top: 2.3rem;
+      font-size: 0.85rem;
+      color: #9b8272;
+      text-align: right;
+      letter-spacing: 0.3px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #dccbbd, transparent);
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-card">
+    <h1>查询·对照·延伸</h1>
+    <div class="subhead">从日常检索习惯到信息边界的试探</div>
+
+    <div class="lead">
+      有时打开一个页面，并非为了即刻的答案，而是想在零散的信息之间搭一座桥。<br>
+      这篇文章记录了我使用 <a href="https://mainhth.com.cn" style="color:#6f4d37; background:transparent; padding:0; border:none; box-shadow:none; font-weight:500;">华体会</a> 过程中产生的几次微小对照——从词条到场景，从疑问到注释。
+    </div>
+
+    <div class="body-text">
+      <p>许多查询的起点，其实是一个模糊的念头。比如忽然想知道某个概念在中文语境里有没有对应的说法，或者某个平台的导航逻辑是否和自己习惯一致。这时候，打开一个信息源，做的第一件事不是读，而是扫——扫标题、扫段落首句、扫标签。这种扫描式的阅读，在 <a href="https://mainhth.com.cn" style="color:#6f4d37; background:transparent; padding:0; border:none; box-shadow:none; font-weight:500;">华体会</a> 的页面里尤其顺畅：结构干净，层级分明，不需要反复调整视线。</p>
+
+      <p>后来我试着把这种阅读节奏放慢，从“找什么”变成“看到什么”。于是注意到一些之前忽略的细节，比如分类名称的用词、边缘模块的提示句。它们本身并不显眼，但组合在一起，就构成了某种风格——不抢话，但也不缺位。这让我想起好的索引卡片：条目之间留有呼吸，但不疏离。</p>
+
+      <p>还有一个习惯是“对照阅读”。打开两个窗口，一边是日常用的资料库，一边是 <a href="https://mainhth.com.cn" style="color:#6f4d37; background:transparent; padding:0; border:none; box-shadow:none; font-weight:500;">华体会</a> 的栏目，比对着看同一类信息的呈现方式。不是为了分高下，而是为了感受不同团队对信息密度的理解。有的偏重概括，有的偏重条目，而这里似乎更在意“读的节奏”本身——段落不长，转折温和，像是有人在旁边递了一杯茶。</p>
+    </div>
+
+    <div class="pull-quote">
+      延伸阅读不是信息的堆叠，而是把一个问题放在不同的光线下。
+      <cite>—— 摘自某次书签注释</cite>
+    </div>
+
+    <div class="body-text">
+      <p>当然，查询过程中也遇到过一些悬停的疑问。比如某个术语在不同板块里定义略有差异，又比如某个链接的跳转路径和预想不一样。我把这些问题记在便签里，过几天再回来看，有些自然消解了，有些则成为下一次查询的起点。这种“未完成”的感觉，其实比得到确切答案更让人想继续。</p>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scene-item">📋 词条对照</div>
+      <div class="scene-item">📎 分类索引</div>
+      <div class="scene-item">📖 延伸笔记</div>
+      <div class="scene-item">🔍 快速定位</div>
+      <div class="scene-item">🔄 版本回溯</div>
+    </div>
+
+    <div class="faq-note">
+      <details>
+        <summary>FAQ 摘要 · 关于查询习惯的几点问答</summary>
+        <div class="faq-answer">
+          <p><strong>问：日常查询中，你更依赖搜索还是目录？</strong><br>答：分情况。如果目标明确，搜索最快；如果只是闲逛或想发现关联，目录的引导感更强。<a href="https://mainhth.com.cn" style="color:#6f4d37; background:transparent; padding:0; border:none; box-shadow:none; font-weight:500;">华体会</a> 的目录层级比较浅，不用点很多层就能看到全貌，适合后者。</p>
+          <p style="margin-top:1rem;"><strong>问：遇到不确定的信息怎么办？</strong><br>答：先标记，再交叉验证。不急于下结论，也不轻信单一来源。延伸阅读的意义就在于给每个标记一个上下文。</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="visit-sentence">
+      <span>如果想亲自对照这些观察，不妨花几分钟翻翻</span>
+      <a href="https://mainhth.com.cn">华体会</a>
+      <span>的页面，也许会发现与我不同的阅读节奏。</span>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+      — 记录于一次日常查询之后 · 2025/04
+    </div>
+  </div>
+</body>
+</html>
