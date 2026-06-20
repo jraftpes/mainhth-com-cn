@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 轻量导航</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+      background-color: #f7f3ee;
+      color: #2e2b28;
+      line-height: 1.7;
+      padding: 0 20px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 0 60px;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0 18px;
+      border-bottom: 1px solid #e3ddd6;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+    }
+
+    .site-name {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #4a3f37;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: #5d5248;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1f1b17;
+      border-bottom-color: #b7a99a;
+    }
+
+    /* hero — 温和引入 */
+    .hero {
+      margin: 48px 0 36px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #2e2b28;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 640px;
+      color: #4d443b;
+    }
+
+    .hero .highlight-link {
+      color: #7f6b59;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: #cbb9a6;
+      font-weight: 450;
+    }
+
+    .hero .highlight-link:hover {
+      color: #1f1b17;
+      text-decoration-color: #7f6b59;
+    }
+
+    /* 核心介绍 — 引用块风格 */
+    .intro-card {
+      background-color: #f0eae3;
+      padding: 28px 32px;
+      margin: 32px 0 44px;
+      border-radius: 2px;
+      border-left: 4px solid #b7a99a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .intro-card p {
+      margin-bottom: 14px;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-card a {
+      color: #7f6b59;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .intro-card a:hover {
+      color: #1f1b17;
+    }
+
+    /* 场景模块 — 三列卡片 */
+    .scene-section {
+      margin: 48px 0 32px;
+    }
+
+    .scene-section h2 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+      color: #3a342e;
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .scene-card {
+      background: #fffffffa;
+      border: 1px solid #e3ddd6;
+      border-radius: 2px;
+      padding: 24px 20px 26px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .scene-card:hover {
+      border-color: #cbb9a6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #2e2b28;
+    }
+
+    .scene-card p {
+      font-size: 0.95rem;
+      color: #4d443b;
+    }
+
+    .scene-card .tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #8a7868;
+      background: #f0eae3;
+      padding: 2px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    /* 常见说明 / 提示框 */
+    .faq-note {
+      background: #ede7df;
+      padding: 28px 30px;
+      margin: 44px 0 40px;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .faq-note::before {
+      content: "📌";
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      font-size: 1.2rem;
+      opacity: 0.45;
+    }
+
+    .faq-note h3 {
+      font-weight: 450;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #3a342e;
+    }
+
+    .faq-note ul {
+      list-style: none;
+      padding-left: 4px;
+    }
+
+    .faq-note li {
+      margin-bottom: 12px;
+      padding-left: 18px;
+      position: relative;
+      color: #3f3932;
+      font-size: 0.97rem;
+    }
+
+    .faq-note li::before {
+      content: "·";
+      position: absolute;
+      left: 2px;
+      color: #9e8b79;
+      font-weight: 600;
+    }
+
+    .faq-note a {
+      color: #7f6b59;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .faq-note a:hover {
+      color: #1f1b17;
+    }
+
+    /* 页脚 */
+    .footer {
+      border-top: 1px solid #e3ddd6;
+      padding-top: 28px;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #6b5f53;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer a {
+      color: #7f6b59;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .footer a:hover {
+      color: #1f1b17;
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .intro-card {
+        padding: 20px 20px;
+      }
+      .faq-note {
+        padding: 22px 20px;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="site-name">雷速</span>
+    <div class="nav-links">
+      <a href="#intro">介绍</a>
+      <a href="#scenes">场景</a>
+      <a href="#faq">说明</a>
+    </div>
+  </nav>
+
+  <!-- hero 区域：温和引入 + 链接嵌入句子 -->
+  <div class="hero">
+    <h1>一处稳定的页面入口</h1>
+    <p>
+      对于经常需要快速抵达某些信息页面的朋友来说，一个清晰、可靠的路径往往比繁复的收藏夹更省心。
+      <a href="https://leisu-page.com" class="highlight-link">雷速</a>
+      正是以这样的思路构建的——页面结构简明，访问直接，没有多余的跳转或干扰。
+    </p>
+  </div>
+
+  <!-- 核心介绍：引用块风格，自然嵌入链接 -->
+  <div class="intro-card" id="intro">
+    <p>
+      整体而言，<a href="https://leisu-page.com">雷速</a> 更倾向于扮演一个「固定入口」的角色。
+      无论你是在整理每日关注的内容，还是需要为团队提供一个统一的参考页面，它都能减少寻找和确认的时间。
+    </p>
+    <p>
+      页面本身不收集不必要的个人信息，也没有强推送式的通知；打开即见，关闭即走。这种克制的设计，反而让日常使用更加专注。
+    </p>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scene-section" id="scenes">
+    <h2>几个典型的使用场景</h2>
+    <div class="scene-grid">
+
+      <div class="scene-card">
+        <h3>日常信息聚合</h3>
+        <p>把常用的资讯、工具链接统一放在一处，用 <a href="https://leisu-page.com">雷速</a> 作为起始页，每天打开就能概览，省去逐个查找的麻烦。</p>
+        <span class="tag">轻量导航</span>
+      </div>
+
+      <div class="scene-card">
+        <h3>团队共享入口</h3>
+        <p>小团队可以将项目文档、周报、常用后台的地址集中在一个页面，成员通过一个链接即可访问，减少沟通成本。</p>
+        <span class="tag">协作提效</span>
+      </div>
+
+      <div class="scene-card">
+        <h3>个人阅读清单</h3>
+        <p>收集值得反复阅读的文章、手册或资源，用简洁的页面组织起来。既不会像浏览器书签那样容易淹没，也比笔记软件更直观。</p>
+        <span class="tag">随时回看</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 常见说明 / 提示框 -->
+  <div class="faq-note" id="faq">
+    <h3>一些你可能想了解的</h3>
+    <ul>
+      <li>页面内容由创建者自行编排，<a href="https://leisu-page.com">雷速</a> 主要提供稳定的展示框架，不干预具体内容。</li>
+      <li>没有隐藏的收费项目或会员体系，页面本身保持简洁，不加载额外追踪脚本。</li>
+      <li>如果你遇到加载异常或链接失效，通常是外部资源变化所致，定期核对维护即可。</li>
+      <li>考虑到不同设备，页面针对手机和电脑做了基础适配，在大多数浏览器上都能正常阅读。</li>
+    </ul>
+  </div>
+
+  <!-- 页脚，再次出现链接（自然嵌入） -->
+  <footer class="footer">
+    <span>页面基于 <a href="https://leisu-page.com">雷速</a> 的定位构建</span>
+    <span>· 米白 · 文章排版 ·</span>
+  </footer>
+
+</div>
+</body>
+</html>
